@@ -9,7 +9,9 @@ import { useRouter } from "next/navigation";
 const Login = () => {
   const [successful, setsuccessful] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
+  const [loading, setLoading] = useState(false)
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -19,6 +21,7 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    setLoading(true)
     try {
       let a = await fetch("/api/user/login", {
         method: "POST",
@@ -45,6 +48,8 @@ const Login = () => {
       }
     } catch (error) {
       throw new Error(error.message);
+    }  finally {
+      setLoading(false); 
     }
   };
   return (
@@ -58,7 +63,7 @@ const Login = () => {
               <h1 className="text-[#1E2772] text-2xl font-bold">BookManager</h1>
               
               </div>
-              <p className="text-md font-bold text-[#1E2772] mb-8">
+              <p className="text-xl sm:text-2xl font-bold text-[#1E2772] mb-8">
                 Login to your account.
               </p>
             </div>
@@ -136,7 +141,6 @@ const Login = () => {
               <img src={showPassword ? "/hide.png" : "/show.png"} alt="" />
             </div>
                   <div className="p-2 mb-[12px] w-[40px] h-[38px] flex justify-center items-center rounded-sm bg-[#1E2772]">
-                    
                     <svg
                       width="24"
                       height="24"
@@ -166,7 +170,7 @@ const Login = () => {
               </div>
               <div className="flex items-center justify-end">
                 <div className="text-blue-500 hover:underline mb-2  cursor-pointer">
-                  <Link href="/forgotEmail">Forgot Password?</Link>
+                  Forgot Password?
                 </div>
               </div>
               <div className="flex items-center justify-between">
@@ -174,7 +178,7 @@ const Login = () => {
                   className="bg-[#1E2772] w-full hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="Submit"
                 >
-                  Login Now
+                  {loading ? 'Logging In...' : 'Login Now'} 
                 </button>
               </div>
               {errors.invalid && (
@@ -217,7 +221,7 @@ const Login = () => {
           </div>
         </div>
         <div className="w-1/2 h-full hidden md:flex justify-center items-center">
-          <img className="w-full h-full" src="/loginbg2.png" alt="Login Background" />
+          <Image className="w-full h-full" src="/loginbg2.png"  alt="Login Background" />
         </div>
       </div>
     </div>

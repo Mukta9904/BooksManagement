@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 const Signup = () => {
   const router = useRouter()
@@ -54,12 +55,12 @@ const Signup = () => {
     <div>
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-900 to-blue-000">
 
-  <div className="bg-white rounded-2xl flex items-center gap-3 justify-between shadow-md w-[75vw] h-[68vh]">
+  <div className="bg-white outline-[2px] outline-offset-[13px] outline outline-white rounded-2xl flex items-center gap-3 justify-between shadow-md w-[70vw] h-[68vh]">
     <div className='lg:w-1/2 w-full flex flex-col px-6 py-4  gap-2 items-center justify-center'>
     <div className="flex items-center justify-center gap-2">
            <h1 className="text-[#1E2772] text-2xl font-bold">BookManager</h1>
               </div>
-    <h2 className="text-2xl text-[#1E2772] font-bold mb-8">Create your Account</h2>
+    <h2 className="text-xl sm:text-2xl text-[#1E2772] font-bold mb-8">Create your Account</h2>
     <form action={handleSubmit(onSubmit)} >
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
@@ -161,7 +162,6 @@ const Signup = () => {
     </div>
   </div>
 </div>
-
     </div>
   )
 }
