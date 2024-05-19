@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 
 const Signup = () => {
   const router = useRouter()

@@ -221,7 +221,7 @@ const Login = () => {
           </div>
         </div>
         <div className="w-1/2 h-full hidden md:flex justify-center items-center">
-          <Image className="w-full h-full" src="/loginbg2.png"  alt="Login Background" />
+          <img className="w-full h-full" src="/loginbg2.png"  alt="Login Background" />
         </div>
       </div>
     </div>
