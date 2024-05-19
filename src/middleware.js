@@ -3,10 +3,8 @@ import { NextResponse } from 'next/server';
 export async function middleware(request) {
   const path = request.nextUrl.pathname;
   const isPublic = [
-    "/",
     "/login",
     "/signup",
-    
   ].includes(path);
 
   const token = request.cookies.get("token")?.value || '';
@@ -24,5 +22,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/signup", "/profile"]
+  matcher: [ "/login", "/signup", "/profile"]
 };

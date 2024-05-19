@@ -10,12 +10,7 @@ const Navbar = () => {
       async function fetchData() {
         let a = await fetch("/api/user/profile", { method: "GET" });
         let res = await a.json();
-        // Check if the user data is not present, then redirect to login
-        if (!res.data) {
-          router.replace("/login");
-        } else {
-          setuser(res.data);
-        }
+        setuser(res.data)
       }
       fetchData();
     }, []);
