@@ -14,7 +14,7 @@ const Books = () => {
     async function fetchData() {
       let a = await fetch("/api/user/getBooks", { method: "GET" });
       let res = await a.json();
-      
+      console.log(res.data);
       setBooks(res.data);
     }
     fetchData();
