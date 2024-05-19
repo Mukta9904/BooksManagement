@@ -30,4 +30,4 @@ npm run dev
 ```
 The server will run on the specified port (usually 3000).
 
-That's it! You're all set to use the Books Management App. Happy coding! 📚🚀
+That's it! You're all set to use the Books Management App. 
