@@ -6,13 +6,13 @@ import { useEffect,useState } from 'react'
 const Navbar = () => {
     const [user, setuser] = useState({})
     const router = useRouter()
-    useEffect(() => {
+    useEffect (async () => {
       async function fetchData() {
         let a = await fetch("/api/user/profile", { method: "GET" });
         let res = await a.json();
         setuser(res.data)
       }
-      fetchData();
+     await fetchData();
     }, []);
     
       const handleLogout = async ()=>{

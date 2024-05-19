@@ -6,12 +6,9 @@ import { usePathname } from "next/navigation";
 
 const SideNavbar = () => {
   const pathname = usePathname();
-  const [password, setPassword] = useState(false);
-  const [payments, setPayments] = useState(false);
-  // Function to check if the path is active
+  const [books, setbooks] = useState(false);
   useEffect(() => {
-    setPassword(pathname === "/profile");
-    setPayments(pathname === "/profile/payments");
+    setbooks(pathname === "/profile");
   }, [pathname]);
 
   return (
@@ -28,15 +25,14 @@ const SideNavbar = () => {
       <ul className=" md:pl-5 pt-[50px] flex flex-col items-start px-2 py-3 text-white text-xl gap-3 bg-[#191919] p-2">
         <li
           className={
-            password
+            books
               ? "rounded-full py-2 px-4 bg-white text-orange-500 "
               : "py-2 px-4"
           }
         >
           <Link
             href="/profile"
-            className="flex items-center justify-center gap-2"
-          >
+            className="flex items-center justify-center gap-2">
             <span>
               <img src="/books.png" className="pb-1 w-6 h-6" alt="" />
             </span>
