@@ -1,15 +1,21 @@
 "use client"
 import React from 'react'
 import BookForm from '../saveBooks/page';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState , useEffect} from 'react'
 import { bookFormContext } from "@/context/context";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
+  const [once, setOnce] = useState(true);
   const [showbooks, setshowBooks] = useState({});
   const [create, setCreate] = useState(false);
   const [show, setShow] = useState(false);
+  const [flex, setFlex] = useState(true)
   
+  const handleView = ()=>{
+     setFlex(!flex)
+  }
   useEffect(() => {
     async function fetchData() {
       let a = await fetch("/api/user/getBooks", { method: "GET" });
@@ -18,6 +24,9 @@ const Books = () => {
       setBooks(res.data);
     }
     fetchData();
+    setTimeout(() => {
+      setOnce(false);
+    }, 3000);
   }, []);
 
   const handleShow = (obj) => {
@@ -42,33 +51,80 @@ const Books = () => {
     <bookFormContext.Provider
       value={{ books, setBooks, create, setCreate, show, setShow }}
     >
-      <div className=" w-full h-[100%]">
-        <div className="flex p-3 sticky top-0 z-10 bg-[#EBDFD7] text-gray-700 text-2xl font-semibold justify-between items-center">
-          <span>Saved Books</span>
+      <div className=" w-full h-[90vh] overflow-auto">
+        <div className="flex p-3 sticky top-0 z-10 bg-gradient-to-br from-indigo-800 from-20% via-sky-900 via-50% to-emerald-600 to-100% backdrop-blur-sm backdrop-filter  text-3xl  font-semibold justify-between items-center">
           <span
+          // className='hover:underline underline-offset-4 duration-200 decoration-green-400'
+          >Saved Books</span>
+           
+          
+          <span
+
             onClick={() => {
               setCreate(!create), setShow(false);
             }}
             className=" cursor-pointer "
           >
-            <img src="/create.svg" alt="" />
+            <motion.img 
+            whileTap={{
+              scale: 1.02,
+              rotate: "2.5deg",
+              duration: 0.25,
+            }}
+            whileHover={{
+              scale: 1.05
+            }}
+            src="/create.svg" alt="" />
           </span>
         </div>
+        <div className='lg:flex gap-2 hidden  items-start py-3 px-4'>
+          <span className='font-bold text-2xl '>View:</span>
+            <div onClick={handleView} className={`flex w-10 h-10 rounded-md cursor-pointer ${flex? "bg-gray-800": ""} bg-white items-center justify-center`} >
+            <img src="/list-view.svg" className={flex? "invert" : ""} alt="" />
+            </div>
+            <div onClick={handleView} className={`flex w-10 h-10 rounded-md cursor-pointer ${flex? "": "bg-gray-800"} bg-white items-center justify-center`}>
+            <img src="/grid-view.svg" className={flex? "" : "invert"} alt="" />
+              </div>
+           </div>
         <div className="flex ">
-          <div
-            className={`flex w-full sm:w-[80%] sm:ml-5 flex-col ${
-              show || create ? "hidden md:flex" : ""
+          <motion.div
+            className={`${flex ? "flex flex-col": "lg:grid lg:grid-cols-3 " } w-full sm:w-[80%] sm:ml-5  ${
+              show || create ? "hidden md:flex sm:flex-col " : "flex flex-col"
             }`}
           >
             {books &&
               books.map((user) => {
                 return (
-                  <div
+                  <motion.div
+                  initial={{
+                      translateY: once? +300 :0,
+                      scale: once? 0.7: 1
+                  }}
+                  animate={{
+                    translateY: 0,
+                    scale: 1
+                  }}
+                  transition={{
+                    duration: .125,
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20 
+                   
+                  }}
+                  whileHover={{
+                    
+                    scale: 1.02,
+                    translateX: -5,
+                    translateY: -5
+                  }}
+                  whileTap={{
+                    
+                  }}
                     onClick={(e) => {
                       handleShow(user), e.stopPropagation();
                     }}
                     key={user._id || user.id}
-                    className={`cursor-pointer transition-all duration-300 hover:bg-[#eac7a3] hover:scale-[1.02] flex items-center justify-between bg-[#f2eae5e6] py-2 px-6 rounded-[10px] shadow-md m-3 ${
+                    className={`cursor-pointer  flex items-center justify-between hover:bg-sky-400 bg-white py-2 px-6 rounded-[10px] shadow-lg m-3 ${
                       show || create ? "hidden md:flex" : ""
                     } `}
                   >
@@ -99,24 +155,28 @@ const Books = () => {
                         alt=""
                       />
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
-          </div>
+          </motion.div>
+          <AnimatePresence>
+
           {create && (
-            <BookForm className="absolute top-10 transition-all right-[20px] " />
+            <BookForm
+             className="absolute top-10 h-auto right-[20px] " />
           )}
           {show && (
             <BookForm
-              id={showbooks._id || showbooks.id}
-              bookTitle={showbooks.bookTitle}
-              authorName={showbooks.authorName}
-              publishYear={showbooks.publishYear}
-              bookGenre={showbooks.bookGenre}
+              id={ showbooks._id || showbooks.id }
+              bookTitle={ showbooks.bookTitle }
+              authorName={ showbooks.authorName }
+              publishYear={ showbooks.publishYear }
+              bookGenre={ showbooks.bookGenre }
               heading="Edit"
-              className="absolute w-[600px] transition-all right-[20px]"
+              className="absolute w-[600px] h-auto right-[20px]"
             />
           )}
+          </AnimatePresence>
         </div>
       </div>
       </bookFormContext.Provider>

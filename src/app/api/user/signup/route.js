@@ -8,6 +8,7 @@ connection();
 
 export async function POST(request) {
   try {
+    
     const reqBody = await request.json();
     const { email, username, password } = reqBody;
     const existingUser = await User.findOne({ email }); // Renamed to avoid confusion
@@ -15,6 +16,7 @@ export async function POST(request) {
     if (existingUser) {
       return NextResponse.json({ message: "User already exists" , status: 400 });
     }
+
     const salt = await bcryptjs.genSalt(10)
     const hashedPassword = await bcryptjs.hash(password, salt)
 
@@ -45,6 +47,7 @@ export async function POST(request) {
        response.cookies.set("token", token,{
           httpOnly: true
        })
+       
        return response       
   } catch (error) {
     

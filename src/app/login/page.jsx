@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
@@ -174,12 +174,20 @@ const Login = () => {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <button
+                <motion.button
+                whileTap={{    
+                  scale: 1.02,
+                  rotate: "2.5deg",
+                  duration: 0.25,
+                }}
+                whileHover={{
+                  scale: 1.05
+                }}
                   className="bg-[#1E2772] w-full hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="Submit"
                 >
                   {loading ? 'Logging In...' : 'Login Now'} 
-                </button>
+                </motion.button>
               </div>
               {errors.invalid && (
                 <div className="text-sm text-red-500">
@@ -209,15 +217,25 @@ const Login = () => {
                 />
               </svg>
             </div>
-            <div className="flex items-center justify-between">
+            <motion.div 
+             whileTap={{    
+              scale: 1.02,
+              rotate: "1.5deg",
+              duration: 0.25,
+            }}
+            whileHover={{
+              scale: 1.02
+            }}
+            className="flex items-center justify-between">
               <Link className="w-full" href="/signup">
                 <button
+               
                   className="bg-white w-full border-2 box-border border-[#1E2772] hover:bg-[#1E2772] hover:text-white text-[#1E2772] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   Sign Up
                 </button>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
         <div className="w-1/2 h-full hidden md:flex justify-center items-center">

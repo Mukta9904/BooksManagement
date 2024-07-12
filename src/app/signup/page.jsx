@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
 
 const Signup = () => {
   const router = useRouter()
@@ -149,9 +150,18 @@ const Signup = () => {
            {errors.password && <div className='text-sm text-red-500'>{errors.password.message}</div> }
       </div>
       <div className="flex items-center w-full justify-center">
-        <button className="bg-[#0B2F8A] hover:bg-[#11275e] text-white font-bold shadow-lg py-2 px-10 rounded-full focus:outline-none focus:shadow-outline" type="submit">
+        <motion.button 
+        whileTap={{    
+          scale: 1.02,
+          rotate: "2.5deg",
+          duration: 0.25,
+        }}
+        whileHover={{
+          scale: 1.05
+        }}
+         className="bg-[#0B2F8A] hover:bg-[#11275e] text-white font-bold shadow-lg py-2 px-10 rounded-full focus:outline-none focus:shadow-outline" type="submit">
           {loading ? 'Signing Up...' : 'Sign Up'} 
-        </button>
+        </motion.button>
       </div>
       <div className='text-black text-lg font-medium my-3'>Already have an account?<span className=' text-blue-700 font-semibold hover:underline'><Link href="/login">Log In</Link></span></div>
     </form>
