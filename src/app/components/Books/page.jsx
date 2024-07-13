@@ -79,10 +79,10 @@ const Books = () => {
         </div>
         <div className='lg:flex gap-2 hidden  items-start py-3 px-4'>
           <span className='font-bold text-2xl '>View:</span>
-            <div onClick={handleView} className={`flex w-10 h-10 rounded-md cursor-pointer ${flex? "bg-gray-800": ""} bg-white items-center justify-center`} >
+            <div onClick={handleView} className={`flex w-10 h-10 rounded-md cursor-pointer ${flex? "bg-gray-800": "bg-white"}  items-center justify-center`} >
             <img src="/list-view.svg" className={flex? "invert" : ""} alt="" />
             </div>
-            <div onClick={handleView} className={`flex w-10 h-10 rounded-md cursor-pointer ${flex? "": "bg-gray-800"} bg-white items-center justify-center`}>
+            <div onClick={handleView} className={`flex w-10 h-10 rounded-md cursor-pointer ${flex? "bg-white": "bg-gray-800"}  items-center justify-center`}>
             <img src="/grid-view.svg" className={flex? "" : "invert"} alt="" />
               </div>
            </div>

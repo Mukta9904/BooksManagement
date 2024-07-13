@@ -54,8 +54,14 @@ const Login = () => {
   };
   return (
   
-    <div className="flex justify-center items-center w-full h-[100vh] bg-gradient-to-r from-blue-900 to-blue-000">
-      <div className="flex bg-[#fcfcfc] border-2 border-white outline-[2px] outline-offset-[13px] outline outline-white justify-center items-center shadow-xl rounded-xl p-3 w-[75vw] h-[70vh]">
+    <div className="flex justify-center relative items-center w-full h-[100vh] bg-gradient-to-r from-blue-900 to-blue-000">
+      <svg className="absolute blur-[5px]  top-0 right-[1%] z-[-5] w-[350px] h-[350px] " viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#FA4D56" d="M64.3,-48.3C78.2,-33.8,80.7,-7.4,75.3,17.5C69.9,42.5,56.5,66,37.5,73.3C18.6,80.6,-5.8,71.7,-28.4,60.4C-50.9,49,-71.5,35,-76.5,16.5C-81.5,-2,-70.8,-25,-55.5,-39.8C-40.1,-54.6,-20.1,-61.3,2.6,-63.4C25.2,-65.4,50.4,-62.8,64.3,-48.3Z" transform="translate(100 100)" />
+</svg>
+<svg className="absolute blur-[5px] bottom-0 left-[1%] z-[0] w-[350px] h-[350px] " viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<path fill="#08BDBA" d="M46.9,-49.3C62.2,-43.1,77,-29.6,82,-12.8C86.9,4,81.9,24.2,72.2,42.3C62.5,60.4,48.1,76.5,32.2,77.7C16.2,78.8,-1.2,65.1,-21.2,57.9C-41.1,50.8,-63.6,50.2,-72.3,39.6C-81,29,-75.9,8.2,-71,-11.3C-66.1,-30.8,-61.3,-49,-49.5,-55.9C-37.6,-62.7,-18.8,-58.1,-1.5,-56.3C15.8,-54.5,31.6,-55.5,46.9,-49.3Z" transform="translate(100 100)" />
+</svg>
+      <div className="flex absolute translate-[50%] bg-[#fcfcfc] border-2 border-white  justify-center items-center shadow-xl shadow-indigo-700 rounded-xl p-3 w-[75vw] h-[70vh]">
         <div className="h-full flex items-center w-full md:w-1/2 justify-center ">
           <div className=" p-5 w-full max-w-sm flex flex-col flex-wrap gap-2 ">
             <div className="flex flex-col flex-wrap justify-center items-center gap-3">
