@@ -68,7 +68,6 @@ const Books = () => {
             <motion.img 
             whileTap={{
               scale: 1.02,
-              rotate: "2.5deg",
               duration: 0.25,
             }}
             whileHover={{
